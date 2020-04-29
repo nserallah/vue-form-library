@@ -64,7 +64,8 @@
                           @input="onChang()"
                           class="form-control"
                           v-model="name.nameField"
-                          name="name"
+                           
+                          :name="'name' + i "   
                           type="text"
                         />
                         <span class="errors">{{ errors[0] }}</span>
@@ -86,13 +87,13 @@
                       </ValidationProvider>
                     </div>
                     <div class="col-2">
-                      <span class="icon-span" @click="deleteRow(i, name)">
+                      <span v-if="names.length > 1" class="icon-span" @click="deleteRow(i, name)">
                         <i class="fas fa-minus"></i>
                       </span>
                     </div>
                   </div>
                 </div>
-                <span class="icon-span" @click="addNewRow">
+                <span class="icon-span" @click="addNewRow()">
                   <i class="fas fa-plus"></i>
                 </span>
               </div>
@@ -324,6 +325,7 @@ export default {
   },
   methods: {
     addNewRow() {
+      
       this.names.push({
         selectLang: "",
         nameField: ""
